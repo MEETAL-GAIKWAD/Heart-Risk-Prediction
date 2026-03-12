@@ -106,3 +106,39 @@ def _calculate_risk(features: PatientFeatures) -> Tuple[float, str]:
         risk_level = "High"
     
     return risk_probability, risk_level
+
+
+
+def get_risk_factors(features: PatientFeatures) -> dict:
+    """
+    Identify which risk factors are present for a patient
+    """
+    factors = {}
+    
+    if features.age > 50:
+        factors['age'] = f"Age {features.age} (elevated risk)"
+    
+    if features.bp > 130:
+        factors['blood_pressure'] = f"BP {features.bp} mmHg (hypertension)"
+    
+    if features.cholesterol > 200:
+        factors['cholesterol'] = f"Cholesterol {features.cholesterol} mg/dL (elevated)"
+    
+    if features.bmi > 25:
+        factors['bmi'] = f"BMI {features.bmi:.1f} (overweight/obese)"
+    
+    if features.diabetes == 1:
+        factors['diabetes'] = "Diabetes present"
+    
+    if features.smoking == 1:
+        factors['smoking'] = "Active smoker"
+    
+    if features.radiation_dose > 30:
+        factors['radiation'] = f"High radiation dose ({features.radiation_dose} Gy)"
+    elif features.radiation_dose > 0:
+        factors['radiation'] = f"Radiation exposure ({features.radiation_dose} Gy)"
+    
+    if features.sessions > 20:
+        factors['sessions'] = f"Multiple treatment sessions ({features.sessions})"
+    
+    return factors
