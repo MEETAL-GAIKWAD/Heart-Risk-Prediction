@@ -1,0 +1,4 @@
+{
+  "features": ["age", "bp", "cholesterol", "radiation_dose", "diabetes", "smoking"],
+  "note": "Feature order used for prediction. Model output is based on these features."
+}
